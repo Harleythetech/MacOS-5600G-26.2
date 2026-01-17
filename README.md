@@ -1,39 +1,55 @@
-# MacOS-5600G-26.2
-Took me a while to get this working properly but now it works with proper audio!
+# MacOS-5600G-26.2 (Sequoia)
 
+This build required specific configuration to handle the Ryzen APU and the ALC1200 audio codec. After resolving initial boot issues, it is now stable with full hardware acceleration and functional audio.
 
-| Parts | Works | - |
-|---|---|---|
-| CPU | YES | Ryzen 5 5600G |
-| GPU | YES (via NootedRed) | AMD Radeon Vega 7 (IGPU)|
-| Wi-Fi | YES (via itwlm Heliport) | Intel (forgot the model) |
-| Audio | YES (via AppleALC, AppleHDA) | Realtek ALC1200|
-| Ethernet | YES (via RTL8111) | Realtek RTL8111 |
-| Bluetooth | NO | Same intel card |
-| Motherboard | Yes, Somehow Works with Secure boot | Asrock B550m Pro4 |
+---
 
-# To Get Audio Working:
-### FAIR WARNING: Make sure to do a backup / snapshot of your system before proceeding to fixing the audio as this may cause bootloops and other shit that you'd hate. (Trust me, I had to reinstall tahoe before i managed to make it work)
+## Hardware Compatibility Matrix
 
-Download [Dortania - KDK 26.2 - 25C56](https://github.com/dortania/KdkSupportPkg/releases/tag/25C56) and install it, after that download [MyKextInstaller](https://github.com/Mirone/MyKextInstaller) and make sure to AGAIN do a backup / snapshot of your build before proceeding.
+| Component | Status | Model / Kext Details |
+| :--- | :--- | :--- |
+| **CPU** | YES | Ryzen 5 5600G |
+| **GPU** | YES | AMD Radeon Vega 7 (IGPU) via **NootedRed** |
+| **Wi-Fi** | YES | Intel (OEM) via **itwlm Heliport** |
+| **Audio** | YES | Realtek ALC1200 via **AppleALC** and **AppleHDA** |
+| **Ethernet** | YES | Realtek RTL8111 via **RTL8111** |
+| **Bluetooth** | **NO** | Integrated Intel Card |
+| **Motherboard** | YES | Asrock B550m Pro4 (Works with Secure Boot) |
 
-Once you have [MyKextInstaller](https://github.com/Mirone/MyKextInstaller) up and running, download [AppleHDA](https://github.com/Mirone/MyKextInstaller/releases/download/1.6/AppleHDA.kext.zip) from the same source or just by pressing the link. Once done, Proceed in installing the AppleHDA.kext using MykextInstaller.
+---
 
-It should prompt you to rebooot the system, reboot it and the audio should now work. (if not you fucked something in the config)
+## Audio Configuration Guide
 
-# Any issues that requires fixing:
-- Firefox on 26.2 has a known issue on hackintosh to prevent it from running properly, To fix this add the following args to your boot arg (this is already added in my bootarg, but incase you are making one on your own then do add this)
-```
+> ### FAIR WARNING
+> **Always perform a full system backup or APFS snapshot before proceeding with audio fixes.** These steps modify system-level kexts and can lead to bootloops. (Note: I personally had to reinstall the OS during testing before achieving success).
+
+To enable audio for the ALC1200 on this version:
+
+1. **KDK Installation:** Download and install [Dortania - KDK 26.2 - 25C56](https://github.com/dortania/KdkSupportPkg/releases/tag/25C56).
+2. **Setup Installer:** Download [MyKextInstaller](https://github.com/Mirone/MyKextInstaller).
+3. **Download Kext:** Get the specific [AppleHDA](https://github.com/Mirone/MyKextInstaller/releases/download/1.6/AppleHDA.kext.zip) required for this process.
+4. **Injection:** Use **MyKextInstaller** to install the `AppleHDA.kext` into your system volume.
+5. **Reboot:** Reboot the system. If audio is still missing, verify your layout-id in the OpenCore config.plist.
+
+---
+
+## Known Issues and Fixes
+
+### Firefox Stability
+Firefox has a known conflict with this Hackintosh version. To prevent crashes and ensure proper performance, add the following argument to your `boot-args`:
+
+```text
 ipc_control_port_options=0
 ```
-- Discord on 26.2 has some graphical issues that causes a system wide hang, (probably an electron issue) to fix this just run discord without gpu acceleration using termnial or automate it
+#### Discord Graphical Hangs
+Discord (and other Electron-based applications) may cause system-wide hangs due to hardware acceleration conflicts. To resolve this, run Discord without GPU acceleration via the Terminal:
 ```
 open -a Discord --args --disable-gpu
 ```
 
 
 # Credits
-- [Dortania](https://dortania.github.io/OpenCore-Install-Guide/)
+- [Dortania - OpenCore Documentation](https://dortania.github.io/OpenCore-Install-Guide/) 
 - [lzhoang2801 - OpenCore Simplify](https://github.com/lzhoang2801/OpCore-Simplify)
 - [Mirone - MyKextInstaller](https://github.com/Mirone/MyKextInstaller)
 - [trulyspinach - SMCAMDProcessor](https://github.com/trulyspinach/SMCAMDProcessor)
