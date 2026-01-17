@@ -10,10 +10,10 @@ This build required specific configuration to handle the Ryzen APU and the ALC12
 | :--- | :--- | :--- |
 | **CPU** | YES | Ryzen 5 5600G |
 | **GPU** | YES | AMD Radeon Vega 7 (IGPU) via **NootedRed** |
-| **Wi-Fi** | YES | Intel (OEM) via **itwlm Heliport** |
+| **Wi-Fi** | YES | Intel (AC-8260) via **itwlm Heliport** |
 | **Audio** | YES | Realtek ALC1200 via **AppleALC** and **AppleHDA** |
 | **Ethernet** | YES | Realtek RTL8111 via **RTL8111** |
-| **Bluetooth** | **NO** | Integrated Intel Card |
+| **Bluetooth** | **NO** | Intel (AC-8260) |
 | **Motherboard** | YES | Asrock B550m Pro4 (Works with Secure Boot) |
 
 ---
