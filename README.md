@@ -1,4 +1,4 @@
-# MacOS-5600G-26.2 (Sequoia)
+# MacOS-5600G-26.2 (Tahoe)
 
 This build required specific configuration to handle the Ryzen APU and the ALC1200 audio codec. After resolving initial boot issues, it is now stable with full hardware acceleration and functional audio.
 
