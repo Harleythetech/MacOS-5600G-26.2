@@ -2,15 +2,15 @@
 Took me a while to get this working properly but now it works with proper audio!
 
 
-| Parts | Works |
-|---|---|
-| CPU | YES | - |
-| GPU | YES (via NootedRed) |
-| Wi-Fi | YES (via itwlm Heliport) |
-| Audio | YES (via AppleALC, AppleHDA) |
-| Ethernet | YES (via RTL8111) |
-| Bluetooth | NO |
-| USB | YES (2.0, 3.1, Type C) |
+| Parts | Works | - |
+|---|---|---|
+| CPU | YES | Ryzen 5 5600G |
+| GPU | YES (via NootedRed) | AMD Radeon Vega 7 (IGPU)|
+| Wi-Fi | YES (via itwlm Heliport) | Intel (forgot the model) |
+| Audio | YES (via AppleALC, AppleHDA) | Realtek ALC1200|
+| Ethernet | YES (via RTL8111) | Realtek RTL8111 |
+| Bluetooth | NO | Same intel card |
+| USB | YES (2.0, 3.1, Type C) | - |
 
 # To Get Audio Working:
 ### FAIR WARNING: Make sure to do a backup / snapshot of your system before proceeding to fixing the audio as this may cause bootloops and other shit that you'd hate. (Trust me, I had to reinstall tahoe before i managed to make it work)
